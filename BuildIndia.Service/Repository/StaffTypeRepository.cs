@@ -24,7 +24,11 @@ namespace BuildIndia.Service.Repository
             List < StaffTypeViewModel > staffTypes = null;
             using (var _context = new NasscomEntities())
             {
-                staffTypes = (from allstaffTypes in _context.StaffType select GetModel(allstaffTypes)).ToList();
+                staffTypes = (from allstaffTypes in _context.StaffType select new StaffTypeViewModel()
+                {
+                    Id = allstaffTypes.Id,
+                    TypeDescription = allstaffTypes.TypeDescription
+                }).ToList();
             }
             if (staffTypes != null)
             {
@@ -37,9 +41,12 @@ namespace BuildIndia.Service.Repository
         public StaffTypeViewModel GetStaffTypeById(int id)
         {
             StaffTypeViewModel staffType = null;
-            using(var _context = new NasscomEntities())
+            using (var _context = new NasscomEntities())
             {
-                staffType = (from allstafftypes in _context.StaffType where allstafftypes.Id == id select GetModel(allstafftypes)).FirstOrDefault();
+                staffType = (from allstafftypes in _context.StaffType where allstafftypes.Id == id select new StaffTypeViewModel() {
+                    Id = allstafftypes.Id,
+                    TypeDescription = allstafftypes.TypeDescription
+                }).FirstOrDefault();
             }
 
             return staffType;

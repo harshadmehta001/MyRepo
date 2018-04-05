@@ -39,7 +39,18 @@ namespace BuildIndia.Service.Repository
             List<RouteViewModel> routes = null;
             using (var _context = new NasscomEntities())
             {
-                routes = (from allroutes in _context.Route select GetModel(allroutes)).ToList();
+                routes = (from allroutes in _context.Route
+                          select
+new RouteViewModel()
+{
+    CrewID = allroutes.CrewID,
+    DriverID = allroutes.DriverID,
+    WorkerID = allroutes.WorkerID,
+    Id = allroutes.Id,
+    Location = allroutes.Location,
+    RouteNumber = allroutes.RouteNumber,
+    VehicleNo = allroutes.VehicleNo
+}).ToList();
             }
             if (routes != null)
             {
@@ -55,7 +66,21 @@ namespace BuildIndia.Service.Repository
 
             using (var _context = new NasscomEntities())
             {
-                route = (from allroutes in _context.Route where allroutes.Id == id select GetModel(allroutes)).FirstOrDefault();
+                route = (from allroutes in _context.Route
+                         where allroutes.Id == id
+                         select
+                        new RouteViewModel()
+                        {
+                            CrewID = allroutes.CrewID,
+                            DriverID = allroutes.DriverID,
+                            WorkerID = allroutes.WorkerID,
+                            Id = allroutes.Id,
+                            Location = allroutes.Location,
+                            RouteNumber = allroutes.RouteNumber,
+                            VehicleNo = allroutes.VehicleNo
+                        }
+
+                         ).FirstOrDefault();
             }
             if (route != null)
             {
@@ -71,7 +96,19 @@ namespace BuildIndia.Service.Repository
 
             using (var _context = new NasscomEntities())
             {
-                route = (from allroutes in _context.Route where allroutes.RouteNumber == routeNum select GetModel(allroutes)).FirstOrDefault();
+                route = (from allroutes in _context.Route
+                         where allroutes.RouteNumber == routeNum
+                         select
+                         new RouteViewModel()
+                         {
+                             CrewID = allroutes.CrewID,
+                             DriverID = allroutes.DriverID,
+                             WorkerID = allroutes.WorkerID,
+                             Id = allroutes.Id,
+                             Location = allroutes.Location,
+                             RouteNumber = allroutes.RouteNumber,
+                             VehicleNo = allroutes.VehicleNo
+                         }).FirstOrDefault();
             }
             if (route != null)
             {

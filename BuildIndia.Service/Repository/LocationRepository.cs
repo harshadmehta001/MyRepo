@@ -12,7 +12,7 @@ namespace BuildIndia.Service.Repository
     {
         public void Save(LocationViewModel locationViewModel)
         {
-           using(var _context = new NasscomEntities())
+            using (var _context = new NasscomEntities())
             {
                 Location location = (from locations in _context.Location where locations.Id == locationViewModel.Id select locations).FirstOrDefault();
                 if (location != null)
@@ -32,9 +32,15 @@ namespace BuildIndia.Service.Repository
         public List<LocationViewModel> GetAllLocations()
         {
             List<LocationViewModel> locations = null;
-            using(var _context = new NasscomEntities())
+            using (var _context = new NasscomEntities())
             {
-                locations = (from alllocations in _context.Location select GetModel(alllocations)).ToList();
+                locations = (from alllocations in _context.Location select new LocationViewModel()
+                {
+                    Description = alllocations.Description,
+                    Id = alllocations.Id,
+                    Name = alllocations.Name
+
+                }).ToList();
             }
             if (locations != null)
             {
@@ -47,9 +53,17 @@ namespace BuildIndia.Service.Repository
         public LocationViewModel GetLocationById(int id)
         {
             LocationViewModel location = null;
-            using(var _context = new NasscomEntities())
+            using (var _context = new NasscomEntities())
             {
-                location = (from alllocations in _context.Location where alllocations.Id == id select GetModel(alllocations)).FirstOrDefault();
+                location = (from alllocations in _context.Location
+                            where alllocations.Id == id
+                            select new LocationViewModel()
+                            {
+                                Description = alllocations.Description,
+                                Id = alllocations.Id,
+                                Name = alllocations.Name
+
+                            }).FirstOrDefault();
             }
             if (location != null)
             {
@@ -63,7 +77,8 @@ namespace BuildIndia.Service.Repository
 
         private Location GetEntity(LocationViewModel locationViewModel)
         {
-            Location location = new Location() {
+            Location location = new Location()
+            {
 
                 Description = locationViewModel.Description,
                 Id = locationViewModel.Id,

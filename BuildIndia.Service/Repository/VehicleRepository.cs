@@ -39,7 +39,14 @@ namespace BuildIndia.Service.Repository
             VehicleViewModel vehicle = null;
             using (var _context = new NasscomEntities())
             {
-                vehicle = (from vehicles in _context.Vehicle where vehicles.VehicleNo == vehicleNo select GetModel(vehicles)).FirstOrDefault();
+                vehicle = (from vehicles in _context.Vehicle where vehicles.VehicleNo == vehicleNo
+                           select
+                              new VehicleViewModel
+                              {
+                                  VehicleNumber = vehicles.VehicleNo,
+                                  RegistrationYear = vehicles.RegistrationDate.HasValue ? SqlFunctions.StringConvert((double)vehicles.RegistrationDate.Value.Year) : "2001",
+                                  VehicleDetails = vehicles.Make
+                              }).FirstOrDefault();
             }
             if (vehicle != null)
             {

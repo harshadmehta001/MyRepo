@@ -37,7 +37,14 @@ namespace BuildIndia.Service.Repository
             List<StaffViewModel> allStaffMembers = null;
             using(var _context = new NasscomEntities())
             {
-                allStaffMembers = (from staffmembers in _context.Staff select GetModel(staffmembers)).ToList();
+                allStaffMembers = (from staffmembers in _context.Staff select new StaffViewModel() {
+
+                    Id = staffmembers.Id,
+                    Email = staffmembers.Email,
+                    Name = staffmembers.Name,
+                    Phone = staffmembers.Phone,
+                    Type = staffmembers.Type
+                }).ToList();
             }
             if (allStaffMembers != null)
             {

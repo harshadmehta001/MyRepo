@@ -34,7 +34,17 @@ namespace BuildIndia.Service.Repository
             CompactorViewModel compactor = null;
             using (var _context = new NasscomEntities())
             {
-                compactor = (from allCompactors in _context.Compactor where allCompactors.Id == id select GetModel(allCompactors)).FirstOrDefault();
+                compactor = (from allCompactors in _context.Compactor
+                             where allCompactors.Id == id
+                             select new CompactorViewModel()
+                             {
+                                 CompactorNumber = allCompactors.CompactorNumber,
+                                 Id = allCompactors.Id,
+                                 LocationId = allCompactors.LocationId,
+                                 Make = allCompactors.Make,
+                                 Size = allCompactors.Size
+
+                             }).FirstOrDefault();
             }
             if (compactor != null)
             {
@@ -50,7 +60,17 @@ namespace BuildIndia.Service.Repository
             List<CompactorViewModel> compactors = null;
             using (var _context = new NasscomEntities())
             {
-                compactors = (from compactor in _context.Compactor select GetModel(compactor)).ToList();
+                compactors = (from compactor in _context.Compactor
+                              select
+new CompactorViewModel()
+{
+CompactorNumber = compactor.CompactorNumber,
+Id = compactor.Id,
+LocationId = compactor.LocationId,
+Make = compactor.Make,
+Size = compactor.Size
+
+}).ToList();
             }
             if (compactors != null)
             {
