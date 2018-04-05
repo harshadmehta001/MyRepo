@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="NasscomModel.Staff" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NasscomModel.StaffType" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NasscomModel.Vehicle" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NasscomModel.DeploymentSheet" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="NasscomModel.DeploymentSheet" Width="1.5" PointX="5.625" PointY="5.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

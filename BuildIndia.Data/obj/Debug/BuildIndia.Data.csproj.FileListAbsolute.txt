@@ -21,3 +21,11 @@ C:\Users\saurabh.vats\Documents\Visual Studio 2015\Projects\DummyWebApi\BuildInd
 C:\Users\saurabh.vats\Documents\Visual Studio 2015\Projects\DummyWebApi\BuildIndia.Data\bin\Debug\EntityFramework.xml
 C:\Users\saurabh.vats\Documents\Visual Studio 2015\Projects\DummyWebApi\BuildIndia.Data\obj\Debug\BuildIndia.Data.dll
 C:\Users\saurabh.vats\Documents\Visual Studio 2015\Projects\DummyWebApi\BuildIndia.Data\obj\Debug\BuildIndia.Data.pdb
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\BuildIndia.Data\bin\Debug\BuildIndia.Data.dll.config
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\BuildIndia.Data\bin\Debug\BuildIndia.Data.dll
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\BuildIndia.Data\bin\Debug\BuildIndia.Data.pdb
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\BuildIndia.Data\bin\Debug\EntityFramework.dll
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\BuildIndia.Data\bin\Debug\EntityFramework.xml
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\BuildIndia.Data\obj\Debug\BuildIndia.Data.csprojResolveAssemblyReference.cache
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\BuildIndia.Data\obj\Debug\BuildIndia.Data.dll
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\BuildIndia.Data\obj\Debug\BuildIndia.Data.pdb

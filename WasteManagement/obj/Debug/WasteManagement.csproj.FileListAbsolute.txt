@@ -30,3 +30,25 @@ C:\Users\saurabh.vats\Documents\Visual Studio 2015\Projects\DummyWebApi\WasteMan
 C:\Users\saurabh.vats\Documents\Visual Studio 2015\Projects\DummyWebApi\WasteManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\saurabh.vats\Documents\Visual Studio 2015\Projects\DummyWebApi\WasteManagement\obj\Debug\WasteManagement.dll
 C:\Users\saurabh.vats\Documents\Visual Studio 2015\Projects\DummyWebApi\WasteManagement\obj\Debug\WasteManagement.pdb
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\ApplicationInsights.config
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\roslyn\csc.exe
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\roslyn\vbc.exe
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\roslyn\VBCSCompiler.exe
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\WasteManagement.dll.config
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\WasteManagement.dll
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\WasteManagement.pdb
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\obj\Debug\WasteManagement.csprojResolveAssemblyReference.cache
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\obj\Debug\WasteManagement.dll
+C:\Users\harshad.mehta\Source\Repos\nasscomrepository2\WasteManagement\obj\Debug\WasteManagement.pdb
