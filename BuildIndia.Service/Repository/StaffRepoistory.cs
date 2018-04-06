@@ -19,7 +19,7 @@ namespace BuildIndia.Service.Repository
                 {
                     staff.Name = staffmember.Name;
                     staff.Phone = staffmember.Phone;
-                    staff.Type = staffmember.Type;
+                    staff.StaffType = staffmember.StaffType;
                     staff.Email = staffmember.Email;
                 }
                 else
@@ -43,7 +43,7 @@ namespace BuildIndia.Service.Repository
                     Email = staffmembers.Email,
                     Name = staffmembers.Name,
                     Phone = staffmembers.Phone,
-                    Type = staffmembers.Type
+                    StaffType = (int)staffmembers.StaffType
                 }).ToList();
             }
             if (allStaffMembers != null)
@@ -64,7 +64,7 @@ namespace BuildIndia.Service.Repository
                 Email = staffmember.Email,
                 Name = staffmember.Name,
                 Phone = staffmember.Phone,
-                Type = staffmember.Type
+                StaffType = staffmember.StaffType
             };
             return staff;
 
@@ -77,7 +77,7 @@ namespace BuildIndia.Service.Repository
                 Email = staffmember.Email,
                 Name = staffmember.Name,
                 Phone = staffmember.Phone,
-                Type = staffmember.Type
+                StaffType = (int)staffmember.StaffType
             };
             return staff;
 

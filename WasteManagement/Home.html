@@ -186,7 +186,57 @@
     route('/Deployments', 'deployment', function () {
     });
     route('/person', 'person', function () {
-      this.heading = 'I\'m page two!';
+        this.heading = 'I\'m page two!';
+
+        $.get(baseUrl + 'person', function (data) {
+            this.persons = data;
+
+            ko.cleanNode(document.getElementById("view"));
+            ko.applyBindings(new PersonList(data), document.getElementById("view"));
+        });
+        var PersonList = function (items) {
+            this.persons = ko.observableArray(items);
+            this.Id = ko.observable("");
+            this.Name = ko.observable("");
+            this.Email = ko.observable("");
+            this.Phone = ko.observable("");
+          //  this.StaffType = ko.observable("");
+            this.addPerson = function () {
+                var newPerson = {
+                    Id:this.Id(),
+                    Name :this.Name(),
+                    Email :this.Email(),
+                    StaffType: 1,
+                    Phone: this.Phone(),
+                    
+            }
+                this.persons.push(newPerson);
+                $.ajax({
+                    url: baseUrl + 'person',
+                    data: JSON.stringify(newPerson),
+                    contentType: 'application/json',
+                    method: 'POST',
+                    success: function () {
+                        alert('record added successfully');
+                    }
+                });
+            }
+            this.updatePerson = function (person) {
+                alert(JSON.stringify(person));
+                this.Id = ko.observable(person.Id);
+                this.Name = ko.observable(person.Name);
+                this.Email = ko.observable(person.Email);
+                this.Phone = ko.observable(person.Phone);
+                    
+            }
+            this.removePerson = function (person) {
+                this.persons.remove(person);
+            }
+            .bind(this);
+        };
+       
+
+
     });
 
     route('/vehicle', 'vehicle', function () {
@@ -196,6 +246,7 @@
             ko.cleanNode(document.getElementById("view"));
             ko.applyBindings(new SimpleListModel(data), document.getElementById("view"));
         });
+        
         var SimpleListModel = function (items) {
             this.vehicles = ko.observableArray(items);
             console.log(this.vehicles);
@@ -206,15 +257,27 @@
             this.VehicleDetails = ko.observable("");
 
             this.addVehicle = function () {
-                this.vehicles.push({"VehicleNumber":this.VehicleNumber,
-                    "VehicleDetails": this.VehicleDetails,
-                    "ServiceProvider": this.ServiceProvider,
-                    "RegistrationYear": this.RegistrationYear});
-
+               
+                var newVehicle = {
+                    VehicleNumber: this.VehicleNumber(),
+                    VehicleDetails: this.VehicleDetails(),
+                    ServiceProvider: this.ServiceProvider(),
+                    RegistrationYear: this.RegistrationYear()
+                }
+                    this.vehicles.push(newVehicle);
                     this.VehicleNumber = ko.observable("");
                     this.RegistrationYear = ko.observable("");
                     this.ServiceProvider = ko.observable("");
                     this.VehicleDetails = ko.observable("");
+                    $.ajax({
+                        url: baseUrl+'vehicle',
+                        type: 'POST',
+                        data: JSON.stringify(newVehicle),
+                        contentType: 'application/json',
+                        success: function () {
+                            alert('record added successfully');
+                        }
+                    })
                 }
             .bind(this);  
         };

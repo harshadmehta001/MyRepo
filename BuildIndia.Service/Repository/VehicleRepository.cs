@@ -62,7 +62,8 @@ namespace BuildIndia.Service.Repository
             Vehicle vehiclemodel = GetEntity(vehicle);
             using (var _context = new NasscomEntities())
             {
-                Vehicle vehiclecheck = _context.Vehicle.Find(vehiclemodel);
+                var tt = _context.Vehicle.ToList();
+                Vehicle vehiclecheck = _context.Vehicle.Find(vehiclemodel.VehicleNo);
                 
                 if (vehiclecheck != null)
                 {
@@ -80,12 +81,13 @@ namespace BuildIndia.Service.Repository
         }
         private Vehicle GetEntity(VehicleViewModel vehicle)
         {
-            Vehicle vehicleEntity = new Vehicle()
+            Vehicle vehicleEntity = new Vehicle();
+            if(vehicle !=null)
             {
-                VehicleNo = vehicle.VehicleNumber,
-                RegistrationDate = DateTime.Now,
-                Make = vehicle.VehicleDetails
-            };
+                vehicleEntity.VehicleNo = vehicle.VehicleNumber;
+                vehicleEntity.RegistrationDate = DateTime.Now;
+                vehicleEntity.Make = vehicle.VehicleDetails;
+            }
             return vehicleEntity;
         }
         private VehicleViewModel GetModel(Vehicle vehicle)
