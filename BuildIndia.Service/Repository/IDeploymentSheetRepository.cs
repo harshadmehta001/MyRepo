@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace BuildIndia.Service.Repository
 {
-    interface IDeploymentSheetRepository
+   public interface IDeploymentSheetRepository
     {
-        List<DeploymentSheetViewModel> InitDeploymentSheet();
+        DeploymentSheetMainViewModel InitDeploymentSheet(DateTime deploymentDate);
         void Save(List<DeploymentSheetModel> model);
     }
 }

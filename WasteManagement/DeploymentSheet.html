@@ -1,0 +1,103 @@
+﻿<!--<header>
+    <div class="row row-offcanvas row-offcanvas-right">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="col-md-3">
+                    <label>Deployment Date</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" value="tjktyjkyu" />
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-default">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>-->
+<!-- Top Section-->
+<style>
+    #route_div {
+        margin-top: 30px;
+    }
+
+    #route1, #signin {
+        margin-left: -15px;
+    }
+
+    section {
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+    }
+
+    hr {
+        width: 97%;
+    }
+</style>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+        <form id="signin" class="navbar-form navbar-left" role="form">
+            <div class="input-group">
+                <span class="input-group-addon">Deployment Date</span>
+                <input id="txtDeploymentDate" type="date" class="form-control" name="date" value="" placeholder="date">
+            </div>
+            <button type="submit" class="btn btn-primary">Load </button>
+        </form>
+    </div>
+</nav>
+
+<!-- Section which is going to be repeated-->
+<section>
+    <div class="container-fluid">
+        <div id="routeContainer" data-bind="foreach:deploymentSheet">
+            <div class="row">
+                <div class="col-md-12" id="route_div">
+                    <div class="input-group">
+                        <label>Route No.</label>
+                        <input type="text" data-bind='value: RouteNo, uniqueName: true' class="form-control" />
+                    </div>
+                    <div class="input-group">
+                        <label>Vehicle No.</label>
+                        <input type="text" data-bind='value: VehicleNo, uniqueName: true' class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Staff</th>
+                                <th>Name</th>
+                                <th>Designation</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>Substitute</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach:Deployments">
+                            <tr>
+                                <td>
+                                    <select data-bind="options: $parent.Drivers,optionsText: 'Text',value: StaffId,optionsCaption: 'Select..'"></select>
+                                </td>
+
+                                <td><input data-bind="value:StaffName" /></td>
+                                <td><input data-bind="value:Designation" /></td>
+                                <td><input data-bind="value:Phone" /></td>
+                                <td><input data-bind="value:Email" /></td>
+                                <td>
+                                    <select data-bind="options:$root.availableDriver,optionsText: 'Text',value: Substitute,optionsCaption: 'Select..'"></select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <hr />
+</section>
