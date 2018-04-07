@@ -8,12 +8,21 @@ route('/', 'index', function () {
     });
 
 });
-
 route('/Deployments', 'deployment', function () {
+    displayData = function () {
+        if ($('#txtDeploymentDate').val()) {
+            $('#dvContainer').show();
+        } else {
+            alert('Please select date');
+        }
+
+    }
     $.get(baseUrl + 'DeploymentSheet?deploymentDate=' + $("#txtDeploymentDate").val(), function (data) {
         ko.cleanNode(document.getElementById("view"));
+
         ko.applyBindings(new DeploymentSheetModel(data), document.getElementById("view"));
     });
+
 
     var DeploymentSheetModel = function (item) {
         this.availableDriver = ko.observableArray(item.AvailableDriver);
@@ -23,6 +32,7 @@ route('/Deployments', 'deployment', function () {
     }.bind(this);
 
 });
+
 route('/person', 'person', function () {
     this.heading = 'I\'m page two!';
 
@@ -122,46 +132,76 @@ route('/vehicle', 'vehicle', function () {
 });
 route('/route', 'route', function () {
     $.get(baseUrl + 'route', function (data) {
-        this.routes = data;
 
         ko.cleanNode(document.getElementById("view"));
         ko.applyBindings(new RouteModel(data), document.getElementById("view"));
     });
     var RouteModel = function (items) {
-        this.routes = ko.observableArray(items);
-        console.log(this.routes);
+        this.routes = ko.observableArray(items.Routes);
+        this.vehicles = ko.observableArray(items.Vehicles);
+        this.staffs = ko.observableArray(items.staffs);
+        var crews = items.Staffs.filter(function (item) {
+            return item.StaffType == 2;
+        });
+        var drivers = items.Staffs.filter(function (item) {
+            return item.StaffType == 1;
+        });
+        var worker = items.Staffs.filter(function (item) {
+            return item.StaffType == 3;
+        });
 
-        this.CompactorNumber = ko.observable("");
-        this.Size = ko.observable("");
-        this.Make = ko.observable("");
-        this.Location = ko.observable("");
-        this.LocationId = ko.observable("");
+        this.crews = ko.observableArray(crews);
+        this.drivers = ko.observableArray(drivers);
+        this.workers = ko.observableArray(worker);
 
-        this.addCompactor = function () {
-            var newCompactor = {
-                CompactorNumber: this.CompactorNumber(),
-                Size: this.Size(),
-                Make: this.Make(),
-                LocationId: this.LocationId()
+        this.locations = ko.observableArray(items.Locations);
+
+        this.RouteNumber = ko.observable("");
+        this.VehicleNo = ko.observable("");
+        this.DriverID = ko.observable("");
+        this.CrewID = ko.observable("");
+        this.WorkerID = ko.observable("");
+        this.locationID = ko.observable("");
+
+        this.addRoute = function () {
+            var newRoute = {
+                RouteNumber: this.RouteNumber(),
+                VehicleNo: this.VehicleNo(),
+                DriverID: this.DriverID(),
+                CrewID: this.CrewID(),
+                WorkerID: this.WorkerID(),
+                locationID: this.locationID(),
+                Driver: "",
+                Crew: "",
+                Worker: "",
+                Location: ""
             }
-            this.compactors.push(newCompactor);
+            this.routes.push(newRoute);
 
-            this.CompactorNumber = ko.observable("");
-            this.Size = ko.observable("");
-            this.Make = ko.observable("");
-            this.LocationId = ko.observable("");
+            //this.RouteNumber = ko.observable("");
+            //this.VehicleNo = ko.observable("");
+            //this.DriverID = ko.observable("");
+            //this.CrewID = ko.observable("");
+            //this.WorkerID = ko.observable("");
+            //this.locationID = ko.observable("");
+            if (newRoute.RouteNumber == "" || newRoute.VehicleNo == undefined || newRoute.DriverID == undefined || newRoute.CrewID == undefined || newRoute.WorkerID == undefined ||
+                newRoute.locationID == undefined) {
+                alert('Please fill all values');
+                return;
+            }
+
             $.ajax({
-                url: baseUrl + 'compactor',
+                url: baseUrl + 'route',
                 type: 'POST',
-                data: JSON.stringify(newCompactor),
+                data: JSON.stringify(newRoute),
                 contentType: 'application/json',
                 success: function () {
-                    alert('record added successfully');
+                    alert('New Route added successfully');
                 }
             })
         }
-        this.removeCompactor = function (compactor) {
-            this.compactors.remove(compactor);
+        this.removeRoute = function (route) {
+            this.routes.remove(route);
         }
             .bind(this);
     };
@@ -207,46 +247,47 @@ route('/complain', 'complain', function () {
                 //});
             };
             this.Name = ko.observable("");
-                this.Email = ko.observable("");
-                this.ContactNumber = ko.observable("");
-                this.Location = ko.observable("");
+            this.Email = ko.observable("");
+            this.ContactNumber = ko.observable("");
+            this.Location = ko.observable("");
 
-                this.Compactor = ko.observable("");
+            this.Compactor = ko.observable("");
 
-                this.Description = ko.observable("");
+            this.Description = ko.observable("");
 
-                $.ajax({
+            $.ajax({
 
-                    url: baseUrl + 'complain',
+                url: baseUrl + 'complain',
 
-                    type: 'POST',
+                type: 'POST',
 
-                    data: JSON.stringify(newComplain),
+                data: JSON.stringify(newComplain),
 
-                    contentType: 'application/json',
+                contentType: 'application/json',
 
-                    success: function () {
+                success: function () {
 
-                        alert('record added successfully');
+                    alert('record added successfully');
 
-                    }
+                }
 
-                })
+            })
 
-            }
+        }
 
-                .bind(this);
-        };
-    });
+            .bind(this);
+    };
+});
 route('/compactor', 'compactor', function () {
     $.get(baseUrl + 'compactor', function (data) {
-        this.compactors = data;
+        this.compactors = data.Compactors;
 
         ko.cleanNode(document.getElementById("view"));
         ko.applyBindings(new CompactorModel(data), document.getElementById("view"));
     });
     var CompactorModel = function (items) {
-        this.compactors = ko.observableArray(items);
+        this.compactors = ko.observableArray(items.Compactors);
+        this.locations = ko.observableArray(items.Locations);
         console.log(this.compactors);
 
         this.CompactorNumber = ko.observable("");
@@ -284,3 +325,4 @@ route('/compactor', 'compactor', function () {
             .bind(this);
     };
 });
+

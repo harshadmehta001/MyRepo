@@ -23,6 +23,7 @@ namespace DummyWebApi.Controller
         public IHttpActionResult Get(string deploymentDate)
         {
             return Ok(_service.InitDeploymentSheet(DateTime.Now));
+            //return Ok(_service.InitDeploymentSheet(Convert.ToDateTime(deploymentDate)));
 
         }
     }

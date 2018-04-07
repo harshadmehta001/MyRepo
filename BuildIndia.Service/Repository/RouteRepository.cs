@@ -18,19 +18,20 @@ namespace BuildIndia.Service.Repository
                 Route route = (from routes in _context.Route where routes.Id == routeViewModel.Id select routes).FirstOrDefault();
                 if (route != null)
                 {
+                    route.Id = routeViewModel.Id;
                     route.CrewID = routeViewModel.CrewID;
                     route.DriverID = routeViewModel.DriverID;
-                    route.Id = routeViewModel.Id;
-                    route.Location = routeViewModel.Location;
+                    route.WorkerID = routeViewModel.WorkerID;
+                    route.locationId = routeViewModel.locationID;
                     route.RouteNumber = routeViewModel.RouteNumber;
                     route.VehicleNo = routeViewModel.VehicleNo;
-                    route.WorkerID = routeViewModel.WorkerID;
+
                 }
                 else
                 {
                     _context.Route.Add(GetEntity(routeViewModel));
                 }
-
+                _context.SaveChanges();
             }
         }
 
@@ -40,19 +41,28 @@ namespace BuildIndia.Service.Repository
             using (var _context = new NasscomEntities())
             {
                 routes = (from allroutes in _context.Route
-                          select
-new RouteViewModel()
-{
-    CrewID = allroutes.CrewID,
-    DriverID = allroutes.DriverID,
-    WorkerID = allroutes.WorkerID,
-    Id = allroutes.Id,
-    Location = allroutes.Location,
-    RouteNumber = allroutes.RouteNumber,
-    VehicleNo = allroutes.VehicleNo
-}).ToList();
+                          join od in _context.Location on allroutes.locationId equals od.Id
+                          join d in _context.Staff on allroutes.DriverID equals d.Id
+                          join c in _context.Staff on allroutes.CrewID equals c.Id
+                          join w in _context.Staff on allroutes.WorkerID equals w.Id
+                          join v in _context.Vehicle on allroutes.VehicleNo equals v.VehicleNo
+                          select new RouteViewModel()
+                          {
+                              CrewID = allroutes.CrewID,
+                              DriverID = allroutes.DriverID,
+                              WorkerID = allroutes.WorkerID,
+                              Id = allroutes.Id,
+                              locationID = allroutes.locationId,
+                              Location = od.Name,
+                              Driver = d.Name,
+                              Crew = c.Name,
+                              Worker = w.Name,
+                              Vehicle = v.Make,
+                              RouteNumber = allroutes.RouteNumber,
+                              VehicleNo = allroutes.VehicleNo
+                          }).ToList();
             }
-            if (routes != null)
+            if (routes != null && routes.Any())
             {
                 return routes;
             }
@@ -75,7 +85,7 @@ new RouteViewModel()
                             DriverID = allroutes.DriverID,
                             WorkerID = allroutes.WorkerID,
                             Id = allroutes.Id,
-                            Location = allroutes.Location,
+                            locationID = allroutes.locationId,
                             RouteNumber = allroutes.RouteNumber,
                             VehicleNo = allroutes.VehicleNo
                         }
@@ -105,7 +115,7 @@ new RouteViewModel()
                              DriverID = allroutes.DriverID,
                              WorkerID = allroutes.WorkerID,
                              Id = allroutes.Id,
-                             Location = allroutes.Location,
+                             locationID = allroutes.locationId,
                              RouteNumber = allroutes.RouteNumber,
                              VehicleNo = allroutes.VehicleNo
                          }).FirstOrDefault();
@@ -128,7 +138,7 @@ new RouteViewModel()
                 DriverID = routeViewModel.DriverID,
                 WorkerID = routeViewModel.WorkerID,
                 Id = routeViewModel.Id,
-                Location = routeViewModel.Location,
+                locationId = routeViewModel.locationID,
                 RouteNumber = routeViewModel.RouteNumber,
                 VehicleNo = routeViewModel.VehicleNo
             };
@@ -142,7 +152,7 @@ new RouteViewModel()
                 DriverID = routeViewModel.DriverID,
                 WorkerID = routeViewModel.WorkerID,
                 Id = routeViewModel.Id,
-                Location = routeViewModel.Location,
+                locationID = routeViewModel.locationId,
                 RouteNumber = routeViewModel.RouteNumber,
                 VehicleNo = routeViewModel.VehicleNo
             };

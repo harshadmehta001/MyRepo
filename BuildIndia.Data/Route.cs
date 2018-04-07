@@ -20,6 +20,6 @@ namespace BuildIndia.Data
         public Nullable<int> DriverID { get; set; }
         public Nullable<int> CrewID { get; set; }
         public Nullable<int> WorkerID { get; set; }
-        public string Location { get; set; }
+        public Nullable<int> locationId { get; set; }
     }
 }

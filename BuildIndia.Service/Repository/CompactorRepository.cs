@@ -60,17 +60,20 @@ namespace BuildIndia.Service.Repository
             List<CompactorViewModel> compactors = null;
             using (var _context = new NasscomEntities())
             {
-                compactors = (from compactor in _context.Compactor
-                              select
-new CompactorViewModel()
-{
-CompactorNumber = compactor.CompactorNumber,
-Id = compactor.Id,
-LocationId = compactor.LocationId,
-Make = compactor.Make,
-Size = compactor.Size
+                compactors = (
+                    from pd in _context.Compactor
+                    join od in _context.Location on pd.LocationId equals od.Id
 
-}).ToList();
+                    select new CompactorViewModel()
+                    {
+                        CompactorNumber = pd.CompactorNumber,
+                        Id = pd.Id,
+                        LocationId = pd.LocationId,
+                        Location = od.Name,
+                        Make = pd.Make,
+                        Size = pd.Size
+                    }
+                    ).ToList();
             }
             if (compactors != null)
             {

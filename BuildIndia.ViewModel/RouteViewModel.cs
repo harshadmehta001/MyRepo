@@ -11,9 +11,14 @@ namespace BuildIndia.ViewModel
         public int Id { get; set; }
         public string RouteNumber { get; set; }
         public string VehicleNo { get; set; }
-        public Nullable<int> DriverID { get; set; }
-        public Nullable<int> CrewID { get; set; }
-        public Nullable<int> WorkerID { get; set; }
+        public int? DriverID { get; set; }
+        public int? CrewID { get; set; }
+        public int? WorkerID { get; set; }
+        public int? locationID { get; set; }
         public string Location { get; set; }
+        public string Driver { get; set; }
+        public string Crew { get; set; }
+        public string Worker { get; set; }
+        public string Vehicle { get; set; }
     }
 }
