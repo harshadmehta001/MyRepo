@@ -52,51 +52,65 @@
 <!-- Section which is going to be repeated-->
 <section>
     <div class="container-fluid" id="dvContainer" style="display:none;">
-        <div id="routeContainer" data-bind="foreach:deploymentSheet">
-            <div class="row">
-                <div class="col-md-12" id="route_div">
-                    <div class="input-group">
-                        <label>Route No.</label>
-                        <input type="text" data-bind='value: RouteNo, uniqueName: true' class="form-control" />
-                    </div>
-                    <div class="input-group">
-                        <label>Vehicle No.</label>
-                        <input type="text" data-bind='value: VehicleNo, uniqueName: true' class="form-control" />
+        <div id="routeContainer" data-bind="foreach:deploymentSheet" style="margin-top:20px;">
+            <div class="row form-horizontal" style="border-bottom:1px solid #808080; margin-bottom:20px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-sm-1">
+                            <b>Route No:</b>
+                        </div>
+                        <div class="col-sm-10">
+                            <span type="text" data-bind='text: RouteNo'></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table table-striped table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <!--<th>Staff</th>-->
-                                <th>Name</th>
-                                <th>Designation</th>
-                                <th>Mobile</th>
-                                <!--<th>Substitute</th>-->
-                            </tr>
-                        </thead>
-                        <tbody data-bind="foreach:Deployments">
-                            <tr>
-                                <!--<td>
-                                    <select data-bind="options: $parent.Drivers,optionsText: 'Text',value: StaffId,optionsCaption: 'Select..'"></select>
-                                </td>-->
-
-                                <td><span data-bind="text:StaffName" ></span></td>
-                                <td><span data-bind="text:Designation" ></span></td>
-                                <td><span data-bind="text:Phone" ></span></td>
-                                <!--<td>
-                                    <select data-bind="options:$root.availableDriver,optionsText: 'Text',value: Substitute,optionsCaption: 'Select..'"></select>
-                                </td>-->
-                            </tr>
-                        </tbody>
-                    </table>
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-sm-1">
+                            <b>Vehicle No:</b>
+                        </div>
+                        <div class="col-sm-10">
+                            <span type="text" data-bind='text: VehicleNo'></span>
+                        </div>
+                    </div>
                 </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-sm-1">
+                        </div>
+                        <div class="col-sm-11">
+                            <table class="table table-bordered table-stripped">
+                                <thead>
+                                    <tr>
+                                        <!--<th>Staff</th>-->
+                                        <th>Name</th>
+                                        <th>Designation</th>
+                                        <th>Mobile</th>
+                                        <!--<th>Substitute</th>-->
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:Deployments">
+                                    <tr>
+                                        <!--<td>
+                                            <select data-bind="options: $parent.Drivers,optionsText: 'Text',value: StaffId,optionsCaption: 'Select..'"></select>
+                                        </td>-->
 
+                                        <td><span data-bind="text:StaffName"></span></td>
+                                        <td><span data-bind="text:Designation"></span></td>
+                                        <td><span data-bind="text:Phone"></span></td>
+                                        <!--<td>
+                                            <select data-bind="options:$root.availableDriver,optionsText: 'Text',value: Substitute,optionsCaption: 'Select..'"></select>
+                                        </td>-->
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <hr />
     </div>
-
 </section>
