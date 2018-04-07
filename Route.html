@@ -1,0 +1,103 @@
+﻿<div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-xs-18 col-sm-12">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Add/Edit Route</a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <form class="form-horizontal" action="">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="routeNumber">Route Number:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" data-bind="value:RouteNumber" id="routeNumber" placeholder="Enter Route Number">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="vehicle">Vehicle:</label>
+                                <div class="col-sm-8">
+                                    <select id="vehicle"
+                                            data-bind="options:vehicles, optionsText: 'VehicleNumber', optionsValue: 'VehicleNumber', optionsCaption: 'Select Vehicle', value:VehicleNo"
+                                            class="form-control"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="driver">Driver:</label>
+                                <div class="col-sm-8">
+                                    <select id="driver"
+                                            data-bind="options:drivers, optionsText: 'Name', optionsValue: 'Id', optionsCaption: 'Select Driver', value:DriverID"
+                                            class="form-control"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="driver">Crew:</label>
+                                <div class="col-sm-8">
+                                    <select id="crew"
+                                            data-bind="options:crews, optionsText: 'Name', optionsValue: 'Id', optionsCaption: 'Select Crew', value:CrewID"
+                                            class="form-control"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="driver">Worker:</label>
+                                <div class="col-sm-8">
+                                    <select id="worker"
+                                            data-bind="options:workers, optionsText: 'Name', optionsValue: 'Id', optionsCaption: 'Select Worker', value:WorkerID"
+                                            class="form-control"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="location">Location:</label>
+                                <div class="col-sm-8">
+                                    <select id="location"
+                                            data-bind="options:locations, optionsText: 'Name', optionsValue: 'Id', optionsCaption: 'Select Location', value:locationID"
+                                            class="form-control"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-primary" data-bind="click: addRoute">Submit</button>
+                                    <button type="button" class="btn btn-default">Reset</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Route List</a>
+                    </h4>
+                </div>
+                <table data-bind='visible: routes().length > 0' class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Route Number</th>
+                            <th>Vehicle </th>
+                            <th>Driver</th>
+                            <th>Crew</th>
+                            <th>Worker</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind='foreach: routes'>
+                        <tr>
+                            <td><span class='required' data-bind='text: RouteNumber'></span></td>
+                            <td><span class='required' data-bind='text: VehicleNo'></span></td>
+                            <td><span class='required' data-bind='text: Driver'></span></td>
+                            <td><span class='required' data-bind='text: Crew'></span></td>
+                            <td><span class='required' data-bind='text: Worker'></span></td>
+                            <td><span class='required' data-bind='text: Location'></span></td>
+                            <td><input type="button" data-bind='click: $root.removeRoute' class="btn btn-danger" value="delete" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--/.col-xs-12.col-sm-9-->
+   
+</div>
