@@ -31,13 +31,13 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-4" for="vehicleNo">Location:</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" id="Location" data-bind="value:Location" placeholder="Enter Location"></textarea>
-                                </div>
+                                    <select class="form-control" id="location" data-bind="options: locations, optionsText:'Name',optionsValue:'Id', optionsCaption: 'Choose...'"></select>
+                                        </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-4" for="vehicleNo">Compactor:</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" id="Compactor" data-bind="value:Compactor" placeholder="Enter Competor details"></textarea>
+                                    <select class="form-control" id="location" data-bind="options: compactors, optionsText:'CompactorNumber',optionsValue:'Id', optionsCaption: 'Choose...'"></select>
                                 </div>
                             </div>
                             <div class="form-group">
