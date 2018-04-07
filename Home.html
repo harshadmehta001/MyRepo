@@ -1,14 +1,14 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Waste Management - Clean India Initiative</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.3.17/slick.core.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-debug.js"></script>
     <script>
         var baseUrl = 'http://localhost:8085/api/';
         // Put John's template engine code here...
@@ -18,7 +18,7 @@
             this.tmpl = function tmpl(str, data) {
                 //// Figure out if we're getting a template, or if we need to
                 //// load the template - and be sure to cache the result.
-                
+
                 //var fn = !/\W/.test(str) ?
                 //  cache[str] = cache[str] ||
                 //    tmpl(document.getElementById(str).innerHTML) :
@@ -65,10 +65,10 @@
             // Render route template with John Resig's template engine:
             var template = '';
             $.get($('#' + route.templateId).attr('src'), function (template) {
-                
+
                 el.innerHTML = tmpl(template, new route.controller());
             });
-            
+
         }
     }
     // Listen on hash change:
@@ -76,10 +76,13 @@
     // Listen on page load:
     window.addEventListener('load', router);
     </script>
-    <script type="text/html" id="home">
+    <script type="text/html" id="home" src="index.html">
     </script>
     <script type="text/html" id="route" src="route.html">
-        
+
+    </script>
+    <script type="text/html" id="compactor" src="compactor.html">
+
     </script>
     <script type="text/html" id="deployment" src="deployment.html">
     </script>
@@ -148,7 +151,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="#/vehicle">Vehicle</a></li>
                             <li><a href="#/person">Person</a></li>
-                            <li><a href="#/compactor.html">Compactor</a></li>
+                            <li><a href="#/compactor">Compactor</a></li>
                             <li><a href="#/route">Route</a></li>
                         </ul>
                     </li>
@@ -162,23 +165,10 @@
     </nav>
 
     <div class="container-fluid text-center">
-        <div class="row content">
-            <!--<div class="col-sm-2 sidenav">
-                <p><a href="#">Link</a></p>
-                <p><a href="#">Link</a></p>
-                <p><a href="#">Link</a></p>
-            </div>-->
-            <div class="col-sm-8 text-left" id="view">
-              
+        <div class="row content" style="margin-top:50px;">
+            <div class="col-sm-12 text-left" id="view">
+
             </div>
-            <!--<div class="col-sm-2 sidenav">
-                <div class="well">
-                    <p>ADS</p>
-                </div>
-                <div class="well">
-                    <p>ADS</p>
-                </div>
-            </div>-->
         </div>
     </div>
     <script>
@@ -200,8 +190,43 @@
             this.Name = ko.observable("");
             this.Email = ko.observable("");
             this.Phone = ko.observable("");
-            this.Type = ko.observable("");
+          //  this.StaffType = ko.observable("");
+            this.addPerson = function () {
+                var newPerson = {
+                    Id:this.Id(),
+                    Name :this.Name(),
+                    Email :this.Email(),
+                    StaffType: 1,
+                    Phone: this.Phone(),
+
+            }
+                this.persons.push(newPerson);
+                $.ajax({
+                    url: baseUrl + 'person',
+                    data: JSON.stringify(newPerson),
+                    contentType: 'application/json',
+                    method: 'POST',
+                    success: function () {
+                        alert('record added successfully');
+                    }
+                });
+            }
+            this.updatePerson = function (person) {
+                alert(JSON.stringify(person));
+                this.Id = ko.observable(person.Id);
+                this.Name = ko.observable(person.Name);
+                this.Email = ko.observable(person.Email);
+                this.Phone = ko.observable(person.Phone);
+
+            }
+            this.removePerson = function (person) {
+                this.persons.remove(person);
+            }
+            .bind(this);
         };
+
+
+
     });
 
     route('/vehicle', 'vehicle', function () {
@@ -211,23 +236,23 @@
             ko.cleanNode(document.getElementById("view"));
             ko.applyBindings(new SimpleListModel(data), document.getElementById("view"));
         });
-        
+
         var SimpleListModel = function (items) {
             this.vehicles = ko.observableArray(items);
             console.log(this.vehicles);
-            
+
             this.VehicleNumber = ko.observable("");
             this.RegistrationYear = ko.observable("");
             this.ServiceProvider = ko.observable("");
             this.VehicleDetails = ko.observable("");
 
             this.addVehicle = function () {
-               
+
                 var newVehicle = {
-                    VehicleNumber: this.VehicleNumber,
-                    VehicleDetails: this.VehicleDetails,
-                    ServiceProvider: this.ServiceProvider,
-                    RegistrationYear: this.RegistrationYear
+                    VehicleNumber: this.VehicleNumber(),
+                    VehicleDetails: this.VehicleDetails(),
+                    ServiceProvider: this.ServiceProvider(),
+                    RegistrationYear: this.RegistrationYear()
                 }
                     this.vehicles.push(newVehicle);
                     this.VehicleNumber = ko.observable("");
@@ -244,18 +269,98 @@
                         }
                     })
                 }
-            .bind(this);  
+            .bind(this);
         };
     });
     route('/route', 'route', function () {
 
     });
 
+ route('/complain', 'complain', function () {
+            $.get(baseUrl + 'complain', function (data) {
+                this.complains = data;
+
+                ko.cleanNode(document.getElementById("view"));
+                ko.applyBindings(new ComplainListModel(data), document.getElementById("view"));
+            });
+            var ComplainListModel = function (items) {
+                this.complains = ko.observableArray(items);
+                console.log(this.vehicles);
+
+                this.Name = ko.observable("");
+                this.Email = ko.observable("");
+                this.ContactNumber = ko.observable("");
+                this.Location = ko.observable("");
+                this.Competor = ko.observable("");
+                this.Description = ko.observable("");
+
+                this.addComplain = function () {
+                    this.complains.push({
+                        "Name": this.Name,
+                        "Email": this.Email,
+                        "ContactNumber": this.ContactNumber,
+                        "Location": this.Location,
+                        "Competor": this.Competor,
+                        "Description": this.Description
+                    });
+
+                    this.Name = ko.observable("");
+                    this.Email = ko.observable("");
+                    this.ContactNumber = ko.observable("");
+                    this.Location = ko.observable("");
+                    this.Competor = ko.observable("");
+                    this.Description = ko.observable("");
+                }
+
+                .bind(this);
+            };
+        });
+        route('/compactor', 'compactor', function () {
+            $.get(baseUrl + 'compactor', function (data) {
+                this.compactors = data;
+
+                ko.cleanNode(document.getElementById("view"));
+                ko.applyBindings(new CompactorModel(data), document.getElementById("view"));
+            });
+            var CompactorModel = function (items) {
+                this.compactors = ko.observableArray(items);
+                console.log(this.compactors);
+
+                this.CompactorNumber = ko.observable("");
+                this.Size = ko.observable("");
+                this.Make = ko.observable("");
+                this.Location = ko.observable("");
+                this.LocationId = ko.observable("");
+
+                this.addCompactor = function () {
+                    var newCompactor = {
+                        CompactorNumber: this.CompactorNumber(),
+                        Size: this.Size(),
+                        Make: this.Make(),
+                        LocationId: this.LocationId()
+                    }
+                    this.compactors.push(newCompactor);
+                    
+                    this.CompactorNumber = ko.observable("");
+                    this.Size = ko.observable("");
+                    this.Make = ko.observable("");
+                    this.LocationId = ko.observable("");
+                    $.ajax({
+                        url: baseUrl + 'compactor',
+                        type: 'POST',
+                        data: JSON.stringify(newCompactor),
+                        contentType: 'application/json',
+                        success: function () {
+                            alert('record added successfully');
+                        }
+                    })
+                }
+                .bind(this);
+            };
+        });
 
     </script>
-    <footer class="container-fluid text-center">
-        <p>Footer Text</p>
-    </footer>
+
 
 </body>
 </html>
