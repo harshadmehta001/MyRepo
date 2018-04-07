@@ -154,7 +154,7 @@ route('/complain', 'complain', function () {
     });
     var ComplainListModel = function (items) {
         this.complains = ko.observableArray(items);
-        
+
         this.Name = ko.observable("");
         this.Email = ko.observable("");
         this.ContactNumber = ko.observable("");
@@ -179,7 +179,7 @@ route('/complain', 'complain', function () {
             this.Competor = ko.observable("");
             this.Description = ko.observable("");
         }
-        
+
         .bind(this);
     };
 });
@@ -221,11 +221,15 @@ route('/compactor', 'compactor', function () {
                 success: function () {
                     alert('record added successfully');
                 }
-            })   
+            })
         }
         this.removeCompactor = function (compactor) {
             this.compactors.remove(compactor);
         }
         .bind(this);
     };
+});
+
+$(document).ready(function () {
+    alert("ready!");
 });
