@@ -12,6 +12,9 @@ namespace BuildIndia.Data
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class NasscomEntities : DbContext
     {
@@ -26,11 +29,34 @@ namespace BuildIndia.Data
         }
     
         public DbSet<Compactor> Compactor { get; set; }
+        public DbSet<DeploymentSheet> DeploymentSheet { get; set; }
         public DbSet<Location> Location { get; set; }
         public DbSet<Route> Route { get; set; }
         public DbSet<Staff> Staff { get; set; }
         public DbSet<StaffType> StaffType { get; set; }
         public DbSet<Vehicle> Vehicle { get; set; }
-        public DbSet<DeploymentSheet> DeploymentSheet { get; set; }
+        public DbSet<Complains> Complains { get; set; }
+    
+        public virtual ObjectResult<usp_FetchDeploymentSheetByDate_Result> usp_FetchDeploymentSheetByDate(Nullable<System.DateTime> deploymentDate)
+        {
+            var deploymentDateParameter = deploymentDate.HasValue ?
+                new ObjectParameter("DeploymentDate", deploymentDate) :
+                new ObjectParameter("DeploymentDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_FetchDeploymentSheetByDate_Result>("usp_FetchDeploymentSheetByDate", deploymentDateParameter);
+        }
+    
+        public virtual ObjectResult<usp_FetchStaffByRouteNo_Result> usp_FetchStaffByRouteNo(string routeNo, Nullable<int> staffType)
+        {
+            var routeNoParameter = routeNo != null ?
+                new ObjectParameter("RouteNo", routeNo) :
+                new ObjectParameter("RouteNo", typeof(string));
+    
+            var staffTypeParameter = staffType.HasValue ?
+                new ObjectParameter("StaffType", staffType) :
+                new ObjectParameter("StaffType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_FetchStaffByRouteNo_Result>("usp_FetchStaffByRouteNo", routeNoParameter, staffTypeParameter);
+        }
     }
 }

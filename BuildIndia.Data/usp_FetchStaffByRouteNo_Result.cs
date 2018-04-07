@@ -10,14 +10,10 @@
 namespace BuildIndia.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Staff
+    public partial class usp_FetchStaffByRouteNo_Result
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public Nullable<int> StaffType { get; set; }
+        public int Value { get; set; }
+        public string Text { get; set; }
     }
 }

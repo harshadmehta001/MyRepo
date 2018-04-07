@@ -4,14 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f87ac4d99e5e4b7eb43ff20866e72004" Name="Diagram1">
+      <Diagram DiagramId="400b051fac2c43df8a144d6ee3ac2b5d" Name="Diagram1">
         <EntityTypeShape EntityType="NasscomModel.Compactor" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NasscomModel.DeploymentSheet" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NasscomModel.Location" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NasscomModel.Route" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NasscomModel.Staff" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NasscomModel.StaffType" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NasscomModel.Vehicle" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NasscomModel.DeploymentSheet" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="NasscomModel.Complains" Width="1.5" PointX="5.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

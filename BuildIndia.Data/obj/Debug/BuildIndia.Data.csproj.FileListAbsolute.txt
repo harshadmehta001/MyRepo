@@ -21,3 +21,12 @@ C:\Users\saurabh.vats\Documents\Visual Studio 2015\Projects\DummyWebApi\BuildInd
 C:\Users\saurabh.vats\Documents\Visual Studio 2015\Projects\DummyWebApi\BuildIndia.Data\bin\Debug\EntityFramework.xml
 C:\Users\saurabh.vats\Documents\Visual Studio 2015\Projects\DummyWebApi\BuildIndia.Data\obj\Debug\BuildIndia.Data.dll
 C:\Users\saurabh.vats\Documents\Visual Studio 2015\Projects\DummyWebApi\BuildIndia.Data\obj\Debug\BuildIndia.Data.pdb
+F:\New folder (2)\BuildIndia.Data\bin\Debug\BuildIndia.Data.dll.config
+F:\New folder (2)\BuildIndia.Data\bin\Debug\BuildIndia.Data.dll
+F:\New folder (2)\BuildIndia.Data\bin\Debug\BuildIndia.Data.pdb
+F:\New folder (2)\BuildIndia.Data\bin\Debug\EntityFramework.dll
+F:\New folder (2)\BuildIndia.Data\bin\Debug\EntityFramework.xml
+F:\New folder (2)\BuildIndia.Data\obj\Debug\BuildIndia.Data.csprojResolveAssemblyReference.cache
+F:\New folder (2)\BuildIndia.Data\obj\Debug\BuildIndia.Data.csproj.CoreCompileInputs.cache
+F:\New folder (2)\BuildIndia.Data\obj\Debug\BuildIndia.Data.dll
+F:\New folder (2)\BuildIndia.Data\obj\Debug\BuildIndia.Data.pdb

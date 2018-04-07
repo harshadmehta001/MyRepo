@@ -10,14 +10,18 @@
 namespace BuildIndia.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Staff
+    public partial class usp_FetchDeploymentSheetByDate_Result
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public Nullable<int> Id { get; set; }
+        public string RouteNumber { get; set; }
+        public string VehicleNo { get; set; }
+        public string StaffName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public Nullable<int> Substitute { get; set; }
         public Nullable<int> StaffType { get; set; }
+        public string Designation { get; set; }
+        public Nullable<int> StaffId { get; set; }
     }
 }

@@ -55,7 +55,7 @@ namespace BuildIndia.Service.Repository
                         RouteNumber = q.RouteNumber,
                         VehicleNo = q.VehicleNo,
                         Substitute = q.Substitute,
-                        StaffId = q.StaffId,
+                        StaffId = q.Id,
                         StaffType = q.StaffType,
                         StaffName = q.StaffName,
                         Email = q.Email,
@@ -81,7 +81,7 @@ namespace BuildIndia.Service.Repository
                 result.AvailableWorker = availableWorker.Select(q => new DropDownViewModel { Text = q.Name, Value = q.Id }).ToList();
                 result.DeploymentSheet = deploymentRouteSheet;
             }
-
+            
             return result;
         }
 

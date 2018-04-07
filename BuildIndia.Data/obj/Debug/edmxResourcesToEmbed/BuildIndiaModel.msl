@@ -12,6 +12,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="DeploymentSheet">
+      <EntityTypeMapping TypeName="NasscomModel.DeploymentSheet">
+        <MappingFragment StoreEntitySet="DeploymentSheet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RouteNumber" ColumnName="RouteNumber" />
+          <ScalarProperty Name="DeploymentDate" ColumnName="DeploymentDate" />
+          <ScalarProperty Name="VehicleNo" ColumnName="VehicleNo" />
+          <ScalarProperty Name="Substitute" ColumnName="Substitute" />
+          <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+          <ScalarProperty Name="StaffType" ColumnName="StaffType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Location">
       <EntityTypeMapping TypeName="NasscomModel.Location">
         <MappingFragment StoreEntitySet="Location">
@@ -41,7 +54,7 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="StaffType" ColumnName="StaffType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -62,16 +75,40 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DeploymentSheet">
-      <EntityTypeMapping TypeName="NasscomModel.DeploymentSheet">
-        <MappingFragment StoreEntitySet="DeploymentSheet">
-          <ScalarProperty Name="StaffType" ColumnName="StaffType" />
-          <ScalarProperty Name="StaffId" ColumnName="StaffId" />
-          <ScalarProperty Name="Substitute" ColumnName="Substitute" />
-          <ScalarProperty Name="VehicleNo" ColumnName="VehicleNo" />
-          <ScalarProperty Name="DeploymentDate" ColumnName="DeploymentDate" />
-          <ScalarProperty Name="RouteNumber" ColumnName="RouteNumber" />
+    <FunctionImportMapping FunctionImportName="usp_FetchDeploymentSheetByDate" FunctionName="NasscomModel.Store.usp_FetchDeploymentSheetByDate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="NasscomModel.usp_FetchDeploymentSheetByDate_Result">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RouteNumber" ColumnName="RouteNumber" />
+          <ScalarProperty Name="VehicleNo" ColumnName="VehicleNo" />
+          <ScalarProperty Name="StaffName" ColumnName="StaffName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Substitute" ColumnName="Substitute" />
+          <ScalarProperty Name="StaffType" ColumnName="StaffType" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_FetchStaffByRouteNo" FunctionName="NasscomModel.Store.usp_FetchStaffByRouteNo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="NasscomModel.usp_FetchStaffByRouteNo_Result">
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Complains">
+      <EntityTypeMapping TypeName="NasscomModel.Complains">
+        <MappingFragment StoreEntitySet="Complains">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Compactor" ColumnName="Compactor" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ComplainID" ColumnName="ComplainID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
