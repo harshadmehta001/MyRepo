@@ -1,0 +1,75 @@
+﻿
+    <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-sm-9">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title" > 
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Add/Edit Vehicle</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <form class="form-horizontal" action="">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="vehicleNo">Vehicle Number:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="vehicleNumber" data-bind="value:VehicleNumber" placeholder="Enter vehicle number">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="vehicleNo">Registration Year:</label>
+                                    <div class="col-sm-8">
+                                        <input type="number" class="form-control" min="1900" max="9999" data-bind="value:RegistrationYear" id="registrationYear" placeholder="Enter registration year">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="vehicleNo">Service Provider:</label>
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control" id="serviceProvider" data-bind="value:ServiceProvider" placeholder="Enter service provider details"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="vehicleNo">Vehicle Details:</label>
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control" id="vehicleDetails" data-bind="value:VehicleDetails" placeholder="Enter vehicle details"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" data-bind="click:addVehicle" class="btn btn-primary" >Submit</button>
+                                        <button type="button" class="btn btn-default">Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Vehicle List</a>
+                        </h4>
+                    </div>
+                    <table data-bind='visible: vehicles().length > 0'>
+                        <thead>
+                            <tr>
+                                <th>Vehicle Number</th>
+                                <th>Year</th>
+                                <th>Provider</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind='foreach: vehicles'>
+                            <tr>
+                                <td><input class='required' data-bind='value: VehicleNumber, uniqueName: true' /></td>
+                                <td><input class='required' data-bind='value: RegistrationYear, uniqueName: true' /></td>
+                                <td><input class='required' data-bind='value: ServiceProvider, uniqueName: true' /></td>
+                                <td><input class='required' data-bind='value: VehicleDetails, uniqueName: true' /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
