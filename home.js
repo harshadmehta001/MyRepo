@@ -1,5 +1,38 @@
-﻿route('/', 'home', function () { });
+﻿
+route('/', 'index', function () {
+    $.get(baseUrl + 'home', function (data) {
+        this.dashboardDatas = data;
+
+        ko.cleanNode(document.getElementById("view"));
+        ko.applyBindings(this.dashboardDatas, document.getElementById("view"));
+    });
+
+});
+
 route('/Deployments', 'deployment', function () {
+    displayData = function () {
+        if ($('#txtDeploymentDate').val()) {
+            $('#dvContainer').show();
+        }else
+        {
+            alert('Please select date');
+        }
+       
+    }
+    $.get(baseUrl + 'DeploymentSheet?deploymentDate=' + $("#txtDeploymentDate").val(), function (data) {
+        ko.cleanNode(document.getElementById("view"));
+
+        ko.applyBindings(new DeploymentSheetModel(data), document.getElementById("view"));
+    });
+
+  
+    var DeploymentSheetModel = function (item) {
+        this.availableDriver = ko.observableArray(item.AvailableDriver);
+        this.availableCrew = ko.observableArray(item.AvailableCrew);
+        this.availableWorker = ko.observableArray(item.AvailableWorker);
+        this.deploymentSheet = ko.observableArray(item.DeploymentSheet);
+    }.bind(this);
+
 });
 route('/person', 'person', function () {
     this.heading = 'I\'m page two!';
@@ -228,8 +261,4 @@ route('/compactor', 'compactor', function () {
         }
         .bind(this);
     };
-});
-
-$(document).ready(function () {
-    alert("ready!");
 });
